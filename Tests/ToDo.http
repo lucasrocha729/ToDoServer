@@ -1,0 +1,10 @@
+POST https://localhost:5001/api/todo/create
+Content-Type: application/json
+
+{
+    "ToDoName": "NomeTesteToDo",
+    "Description": "TesteDescrição ToDo"
+}
+
+###
+GET https://localhost:5001/api/todo/list
