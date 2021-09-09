@@ -51,13 +51,13 @@ namespace ToDoWeb.Controllers
             return Ok(_context.ToDos.ToList());
         }
 
-        // [HttpPut]
-        // [Route("update/{id}")]
-        // public IActionResult Update([FromRoute] int id, [FromBody] ToDo todo){
-        //     todo.Id = id;
-        //     _context.ToDos.Update(id, todo);
-        //     return null;
-          
-        // }
+        [HttpPut]
+        [Route("update/{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] ToDo todo){
+            todo.Id = id;
+            _context.ToDos.Update(todo);
+            _context.SaveChanges();
+            return Ok(_context.ToDos.ToList());
+        }
     }
 }
