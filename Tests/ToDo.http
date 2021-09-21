@@ -16,3 +16,5 @@ Content-Type: application/json
 {
     "ToDoName": "NomeTesteToDo Alterado"
 }
+###
+DELETE https://localhost:5001/api/todo/delete/1

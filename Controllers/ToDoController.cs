@@ -40,9 +40,9 @@ namespace ToDoWeb.Controllers
         }
 
         [HttpDelete]
-        [Route("delete/{name}")]
-        public IActionResult Delete([FromRoute] string name){
-            ToDo todo = _context.ToDos.Find(name);
+        [Route("delete/{id}")]
+        public IActionResult Delete([FromRoute] int id){
+            ToDo todo = _context.ToDos.Find(id);
             if (todo == null){
                 return NotFound();
             }
