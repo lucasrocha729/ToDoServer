@@ -1,6 +1,6 @@
 using System;
 
-namespace ToDoWeb.Models
+namespace ToDoServer.Models
 {
     public class ToDo
     {
@@ -11,6 +11,8 @@ namespace ToDoWeb.Models
         public string Description { get; set; }
 
         public DateTime CreationDate { get; set; }
+
+        public DateTime ToDoDate { get; set; }
 
         public override string ToString()
         {
