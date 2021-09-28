@@ -3,7 +3,9 @@ Content-Type: application/json
 
 {
     "ToDoName": "NomeTesteToDo",
-    "Description": "TesteDescrição ToDo"
+    "Description": "TesteDescrição ToDo",
+    "CategoryId": 2
+
 }
 
 ###
@@ -18,3 +20,14 @@ Content-Type: application/json
 }
 ###
 DELETE https://localhost:5001/api/todo/delete/1
+
+###
+POST https://localhost:5001/api/category/create
+Content-Type: application/json
+
+{
+    "CategoryName": "Nome Teste Categoria"
+}
+
+###
+GET https://localhost:5001/api/category/list

@@ -22,7 +22,7 @@ namespace ToDoWeb.Controllers
         [Route("create")]
         public IActionResult Create(ToDo todo)
         {
-            _context.ToDos.Add (todo);
+            _context.ToDos.Add(todo);
             _context.SaveChanges();
             return Created("", todo);
         }
@@ -52,7 +52,7 @@ namespace ToDoWeb.Controllers
             {
                 return NotFound();
             }
-            _context.ToDos.Remove (todo);
+            _context.ToDos.Remove(todo);
             _context.SaveChanges();
             return Ok(_context.ToDos.ToList());
         }
@@ -62,7 +62,7 @@ namespace ToDoWeb.Controllers
         public IActionResult Update([FromRoute] int id, [FromBody] ToDo todo)
         {
             todo.Id = id;
-            _context.ToDos.Update (todo);
+            _context.ToDos.Update(todo);
             _context.SaveChanges();
             return Ok(_context.ToDos.ToList());
         }
