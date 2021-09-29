@@ -13,6 +13,8 @@ namespace ToDoServer.Data
         }
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<Category> Category { get; set; }
+
+
     }
 
 
