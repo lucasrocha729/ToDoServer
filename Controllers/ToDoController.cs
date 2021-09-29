@@ -2,6 +2,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ToDoServer.Data;
 using ToDoServer.Models;
+using Microsoft.EntityFrameworkCore;
 // using ToDoWeb.Models;
 
 namespace ToDoWeb.Controllers
@@ -29,7 +30,7 @@ namespace ToDoWeb.Controllers
 
         [HttpGet]
         [Route("list")]
-        public IActionResult List() => Ok(_context.ToDos.ToList());
+        public IActionResult List() => Ok(_context.ToDos.Include(i => i.Category).ToList());
 
         [HttpGet]
         [Route("getById/{id}")]
