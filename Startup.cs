@@ -34,7 +34,7 @@ namespace ToDoWeb
             );
 
             services.AddDbContext<DataContext>(
-                options => options.UseInMemoryDatabase("Dados")
+                options => options.UseSqlServer(Configuration.GetConnectionString("Azure"))
             );
 
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
