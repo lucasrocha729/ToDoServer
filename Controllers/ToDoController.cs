@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ToDoServer.Data;
 using ToDoServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 // using ToDoWeb.Models;
 
 namespace ToDoWeb.Controllers
@@ -63,6 +64,8 @@ namespace ToDoWeb.Controllers
         public IActionResult Update([FromRoute] int id, [FromBody] ToDo todo)
         {
             todo.Id = id;
+           // todo.CategoryId = _context.ToDos.Find(todo.Id).CategoryId;
+            //Console.WriteLine(todo);
             _context.ToDos.Update(todo);
             _context.SaveChanges();
             return Ok(_context.ToDos.ToList());

@@ -11,14 +11,12 @@ namespace ToDoServer.Models
     [Key]
     public int Id { get; set; }
     public string ToDoName { get; set; }
-
     public string Description { get; set; }
-
     public DateTime CreationDate { get; set; }
-
     public DateTime ToDoDate { get; set; }
-
     public string ToDoStatus { get; set; }
+
+    public Boolean AllDay { get; set; }
 
     public override string ToString()
     {
