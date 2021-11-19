@@ -2,22 +2,25 @@ POST https://localhost:5001/api/todo/create
 Content-Type: application/json
 
 {
-    "ToDoName": "NomeTesteToDo",
-    "Description": "TesteDescrição ToDo",
-    "CategoryId": 3
-
+    "ToDoName": "Teste numero 3",
+    "Description": "Descrição do item novo 6",
+    "ToDoDate": "2021-11-25T20:25:57.8002055",
+    "CategoryId": 3,
+    "allDay": true
 }
 
 ###
 GET https://localhost:5001/api/todo/list
 
 ###
-PUT https://localhost:5001/api/todo/update/11
+PUT https://localhost:5001/api/todo/update/15
 Content-Type: application/json
 
 {
-    "ToDoName": "NomeTesteToDo Alteraasdasdasdo",
-    "CategoryId": 3
+    "ToDoName": "NomeTesteToDo Alterado item 15",
+    "CategoryId": 3,
+    "Description": "Descrição do item 15",
+    "ToDoDate": "Wed Nov 17 2021 21:40:27 GMT-0300 (Horário Padrão de Brasília)"
 }
 
 ###

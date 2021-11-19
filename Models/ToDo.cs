@@ -14,8 +14,8 @@ namespace ToDoServer.Models
     public string Description { get; set; }
     public DateTime CreationDate { get; set; }
     public DateTime ToDoDate { get; set; }
+    public DateTime ToDoDateEnd { get; set; }
     public string ToDoStatus { get; set; }
-
     public Boolean AllDay { get; set; }
 
     public override string ToString()
