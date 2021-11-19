@@ -13,14 +13,12 @@ Content-Type: application/json
 GET https://localhost:5001/api/todo/list
 
 ###
-PUT https://localhost:5001/api/todo/update/15
+PUT https://localhost:5001/api/todo/update/27
 Content-Type: application/json
 
 {
-    "ToDoName": "NomeTesteToDo Alterado item 15",
-    "CategoryId": 3,
-    "Description": "Descrição do item 15",
-    "ToDoDate": "Wed Nov 17 2021 21:40:27 GMT-0300 (Horário Padrão de Brasília)"
+    "allDay": true,
+    "CategoryId": 4
 }
 
 ###
