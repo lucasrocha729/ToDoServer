@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ToDoServer.Data;
+using ToDoServer.Models;
+using ToDoWeb.DTO;
 
 namespace ToDoWeb
 {
@@ -44,6 +47,15 @@ namespace ToDoWeb
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoWeb", Version = "v1" });
             });
 
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+              cfg.CreateMap<ToDoDTO, ToDo>();
+              cfg.CreateMap<CategoryDTO, Category>();
+              cfg.CreateMap<ToDo, ToDoDTO>();
+              cfg.CreateMap<Category, CategoryDTO>();
+            });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
