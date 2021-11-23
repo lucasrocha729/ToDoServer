@@ -56,7 +56,8 @@ namespace ToDoWeb.Controllers
       {
         return NotFound();
       }
-      return Ok(todo);
+      var todoDTO = _mapper.Map<ToDoDTO>(todo);
+      return Ok(todoDTO);
     }
 
     [HttpDelete]
@@ -70,7 +71,8 @@ namespace ToDoWeb.Controllers
       }
       _context.ToDos.Remove(todo);
       _context.SaveChanges();
-      return Ok(_context.ToDos.ToList());
+      var toDos = _context.ToDos.ToList();
+      return Ok(_mapper.Map<List<ToDoDTO>>(toDos));
     }
 
     [HttpPut]
@@ -82,7 +84,8 @@ namespace ToDoWeb.Controllers
       //Console.WriteLine(todo);
       _context.ToDos.Update(todo);
       _context.SaveChanges();
-      return Ok(_context.ToDos.ToList());
+      var toDos = _context.ToDos.ToList();
+      return Ok(_mapper.Map<List<ToDoDTO>>(toDos));
     }
   }
 }
