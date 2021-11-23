@@ -4,6 +4,9 @@ using ToDoServer.Data;
 using ToDoServer.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using AutoMapper;
+using ToDoWeb.DTO;
+using System.Collections.Generic;
 // using ToDoWeb.Models;
 
 namespace ToDoWeb.Controllers
@@ -13,10 +16,12 @@ namespace ToDoWeb.Controllers
   public class ToDoController : ControllerBase
   {
     private readonly DataContext _context;
+    private readonly IMapper _mapper;
 
-    public ToDoController(DataContext context)
+    public ToDoController(DataContext context, IMapper mapper)
     {
       _context = context;
+      _mapper = mapper;
     }
 
     //Post: api/todo/create
@@ -26,13 +31,20 @@ namespace ToDoWeb.Controllers
     {
       _context.ToDos.Add(todo);
       _context.SaveChanges();
-      return Created("", todo);
+      var todoDTO = _mapper.Map<ToDoDTO>(todo);
+      return Created("", todoDTO);
     }
 
     [HttpGet]
     [Route("list")]
-    public IActionResult List() => Ok(_context.ToDos.Include(i => i.Category).Select(s => new ToDo { Id = s.Id, ToDoDate = s.ToDoDate, ToDoDateEnd = s.ToDoDateEnd, AllDay = s.AllDay, ToDoName = s.ToDoName, ToDoStatus = s.ToDoStatus, Description = s.Description, CreationDate = s.CreationDate, CategoryId = s.CategoryId, Category = new Category { CategoryName = s.Category.CategoryName } }).ToList());
+    public IActionResult List()
+    {
+      var toDos = _context.ToDos.Include(i => i.Category).ToList();
+      var toDosDTO = _mapper.Map<List<ToDoDTO>>(toDos);
 
+      return Ok(toDosDTO);
+
+    }
     // public IActionResult List() => Ok(_context.ToDos.ToList());
 
     [HttpGet]
@@ -44,7 +56,8 @@ namespace ToDoWeb.Controllers
       {
         return NotFound();
       }
-      return Ok(todo);
+      var todoDTO = _mapper.Map<ToDoDTO>(todo);
+      return Ok(todoDTO);
     }
 
     [HttpDelete]
@@ -58,7 +71,8 @@ namespace ToDoWeb.Controllers
       }
       _context.ToDos.Remove(todo);
       _context.SaveChanges();
-      return Ok(_context.ToDos.ToList());
+      var toDos = _context.ToDos.ToList();
+      return Ok(_mapper.Map<List<ToDoDTO>>(toDos));
     }
 
     [HttpPut]
@@ -70,7 +84,8 @@ namespace ToDoWeb.Controllers
       //Console.WriteLine(todo);
       _context.ToDos.Update(todo);
       _context.SaveChanges();
-      return Ok(_context.ToDos.ToList());
+      var toDos = _context.ToDos.ToList();
+      return Ok(_mapper.Map<List<ToDoDTO>>(toDos));
     }
   }
 }
