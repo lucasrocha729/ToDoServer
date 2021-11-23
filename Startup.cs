@@ -40,7 +40,7 @@ namespace ToDoWeb
                 options => options.UseSqlServer(Configuration.GetConnectionString("Azure"))
             );
 
-            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
