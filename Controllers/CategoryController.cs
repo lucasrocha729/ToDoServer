@@ -32,8 +32,8 @@ namespace ToDoServer.Controllers
     [HttpGet]
     [Route("list")]
     public IActionResult List()
-    { 
-      var categories = _context.Category.ToList()
+    {
+      var categories = _context.Category.ToList();
       var categoriesDTO = _mapper.Map<List<CategoryDTO>>(categories);
 
       return Ok(categoriesDTO);
